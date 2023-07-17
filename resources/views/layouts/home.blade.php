@@ -11,10 +11,23 @@
 
     <div class="container">
         <div class="sidebar">
-            a
+            <div class="logo"></div>
         </div>
         <div class="content">
-            b
+            <nav>
+                <a href="#" class="btn btn-primary">
+                    Criar tarefa
+                </a>
+
+            </nav>
+            <main>
+                <section class="graph">
+                    Grafico
+                </section>
+                <section class="list">
+                    Lista
+                </section>
+            </main>
         </div>
     </div>
 
