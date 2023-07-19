@@ -70,6 +70,110 @@ main {
 }
 
 .graph {
-    background-color: #6143ff;
     width: 33%;
+    height: 100%;
+    padding: 5px;
+}
+.graph_header {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+}
+.line_graph_header {
+    flex: 1;
+    width: 50px;
+    height: 2px;
+    padding: 0 10px;
+}
+.subtitle_graph_header {
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+.graph_body {
+    background-color: #ccc;
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+}
+.graph_footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.graph_footer p {
+    font-size: 0.8rem;
+    color: var(--text-dark);
+}
+
+.list {
+    flex: 1;
+    height: 100%;
+    padding: 5px 10px;
+}
+.list_header {
+    display: flex;
+}
+.list_header_select {
+}
+
+.task_list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid var(--bg-light);
+    transition: all ease 0.5s;
+}
+
+.task:hover {
+    border-radius: 10px;
+    background-color: var(--bg-light);
+}
+
+
+.task_title {
+    display: flex;
+    flex: 1;
+}
+
+.task_title span {
+    margin-left: 10px;
+    font-weight: 500;
+    font-size: 1rem;
+    /* transition: all ease .5s; */
+}
+
+.task_color {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+.task_color span {
+    margin-left: 10px;
+    font-size: 0.9rem;
+    /* transition: all ease .5s; */
+}
+
+.priority_color {
+    margin-right: 10px;
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+.task_buttons {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
 }
