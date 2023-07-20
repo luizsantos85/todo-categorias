@@ -34,13 +34,10 @@ a {
     width: 100px;
     background-color: var(--color-primary);
 }
-.logo {
-    width: 50px;
-    height: 50px;
-    margin: 10px auto;
-    background-color: var(--bg-white);
-    border-radius: 10px;
+.sidebar img {
+    max-width: 100%;
 }
+
 .content {
 }
 nav {
@@ -62,6 +59,10 @@ nav {
 .btn-primary {
     background-color: var(--color-primary);
     color: var(--bg-light);
+    transition: all ease 0.5s;
+}
+.btn-primary:hover {
+    opacity: 0.7;
 }
 
 main {
@@ -74,16 +75,29 @@ main {
     height: 100%;
     padding: 5px;
 }
+
 .graph_header {
     display: flex;
     justify-content: space-between;
-    /* align-items: center; */
+    align-items: center;
 }
+
+.graph_header h2 {
+    font-size: 1.1rem;
+}
+
 .line_graph_header {
     flex: 1;
-    width: 50px;
     height: 2px;
-    padding: 0 10px;
+    margin: 0 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.date_graph_header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* flex: 1; */
 }
 .subtitle_graph_header {
     margin-top: 10px;
@@ -91,10 +105,12 @@ main {
 }
 
 .graph_body {
-    background-color: #ccc;
     width: 300px;
     height: 300px;
-    margin: 20px auto;
+    margin: 50px auto;
+    background-image: url("/assets/images/graph.png");
+    background-position: center;
+    background-size: contain;
 }
 .graph_footer {
     display: flex;
@@ -104,6 +120,11 @@ main {
 .graph_footer p {
     font-size: 0.8rem;
     color: var(--text-dark);
+}
+.graph_footer img {
+    width: 20px;
+    height: auto;
+    margin-right: 5px;
 }
 
 .list {
@@ -138,8 +159,10 @@ main {
 .task:hover {
     border-radius: 10px;
     background-color: var(--bg-light);
+    -webkit-box-shadow: 5px 6px 10px -1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 5px 6px 10px -1px rgba(0, 0, 0, 0.75);
+    box-shadow: 5px 6px 10px -1px rgba(0, 0, 0, 0.75);
 }
-
 
 .task_title {
     display: flex;
@@ -176,4 +199,16 @@ main {
     display: flex;
     justify-content: flex-end;
     flex: 1;
+    transition: all ease 0.5s;
+}
+.task_buttons a {
+    margin-right: 10px;
+    padding: 0 5px;
+}
+.task_buttons a:hover {
+    transform: scale(1.2);
+}
+.task_buttons a img {
+    width: 20px;
+    height: 20px;
 }

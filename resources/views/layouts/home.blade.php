@@ -11,7 +11,7 @@
 
     <div class="container">
         <div class="sidebar">
-            <div class="logo"></div>
+            <img src="{{asset('assets/images/logo.png')}}" alt="logo image">
         </div>
         <div class="content">
             <nav>
@@ -25,7 +25,9 @@
                     <div class="graph_header">
                         <h2>Progresso do dia</h2>
                         <hr class="line_graph_header"/>
-                        Data
+                        <div class="date_graph_header">
+                            20/07/2023
+                        </div>
                     </div>
 
                     <div class="subtitle_graph_header">
@@ -36,6 +38,7 @@
                     <div class="graph_body"></div>
 
                     <div class="graph_footer">
+                        <img src="{{asset('assets/images/icon-info.png')}}" alt="icon info">
                         <p>Restam 4 tarefas para serem feitas.</p>
                     </div>
                 </section>
@@ -48,6 +51,8 @@
                         </select>
                     </div>
                     <div class="task_list">
+                        @for ($i = 0; $i < 3; $i++)
+
                         <div class="task">
                             <div class="task_title">
                                 <input type="checkbox" name="" id="" />
@@ -58,22 +63,17 @@
                                 <span>Prioridade </span>
                             </div>
                             <div class="task_buttons">
-                                Editar - Excluir
+                                <a href="#">
+                                    <img src="{{asset('assets/images/icon-edit.png')}}" alt="icon edit">
+                                </a>
+                                <a href="#">
+                                    <img src="{{asset('assets/images/icon-delete.png')}}" alt="icon edit">
+                                </a>
+
                             </div>
                         </div>
-                        <div class="task">
-                            <div class="task_title">
-                                <input type="checkbox" name="" id="" />
-                                <span>Título da tarefa </span>
-                            </div>
-                            <div class="task_color">
-                                <div class="priority_color"></div>
-                                <span>Prioridade </span>
-                            </div>
-                            <div class="task_buttons">
-                                Editar - Excluir
-                            </div>
-                        </div>
+
+                        @endfor
                     </div>
                 </section>
             </main>
