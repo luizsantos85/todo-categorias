@@ -26,7 +26,9 @@
                         <h2>Progresso do dia</h2>
                         <hr class="line_graph_header"/>
                         <div class="date_graph_header">
+                            <img src="{{asset('assets/images/icon-prev.png')}}" alt="">
                             20/07/2023
+                            <img src="{{asset('assets/images/icon-next.png')}}" alt="">
                         </div>
                     </div>
 
@@ -46,8 +48,7 @@
                 <section class="list">
                     <div class="list_header">
                         <select name="" id="" class="list_header_select">
-                            <option value="">Selecione...</option>
-                            <option value="">Todas as tarefas</option>
+                            <option value="" selected>Todas as tarefas</option>
                         </select>
                     </div>
                     <div class="task_list">
