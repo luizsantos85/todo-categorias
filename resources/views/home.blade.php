@@ -1,7 +1,7 @@
-<x-layout>
+<x-layout titlePage="Home">
 
     <x-slot:btn>
-        <a href="#" class="btn btn-primary">
+        <a href="{{route('task.create')}}" class="btn btn-primary">
             Criar tarefa
         </a>
     </x-slot:btn>
@@ -37,27 +37,16 @@
             </select>
         </div>
         <div class="task_list">
-            @for ($i = 0; $i < 3; $i++)
-            <div class="task">
-                <div class="task_title">
-                    <input type="checkbox" name="" id="" />
-                    <span>Título da tarefa </span>
-                </div>
-                <div class="task_color">
-                    <div class="priority_color"></div>
-                    <span>Prioridade </span>
-                </div>
-                <div class="task_buttons">
-                    <a href="#">
-                        <img src="{{asset('assets/images/icon-edit.png')}}" alt="icon edit">
-                    </a>
-                    <a href="#">
-                        <img src="{{asset('assets/images/icon-delete.png')}}" alt="icon edit">
-                    </a>
-
-                </div>
-                </div>
-        @endfor
+            @php
+            $tasks = [
+                ['id' => 1, 'done' => false, 'title' => 'Primeira Tarefa', 'category' => 'Categoria 1'],
+                ['id' => 2, 'done' => false, 'title' => 'Segunda Tarefa', 'category' => 'Categoria 2'],
+                ['id' => 3, 'done' => true, 'title' => 'Terceira Tarefa', 'category' => 'Categoria 1'],
+            ];
+            @endphp
+            <x-task :data=$tasks[0] />
+            <x-task :data=$tasks[1] />
+            <x-task :data=$tasks[2] />
         </div>
     </section>
 </x-layout>

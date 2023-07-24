@@ -13,13 +13,15 @@
 
     <div class="container">
         <div class="sidebar">
-            <img src="{{asset('assets/images/logo.png')}}" alt="logo image">
+            <a href="{{route('home')}}">
+                <img src="{{asset('assets/images/logo.png')}}" alt="logo image">
+            </a>
         </div>
         <div class="content">
             <nav>
                 {{$btn ?? null}}
             </nav>
-            
+
             <main>
                 {{$slot}}
             </main>
