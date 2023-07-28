@@ -9,7 +9,7 @@ class Task extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'due_date', 'description', 'category_id', 'user_id'];
+    protected $fillable = ['title', 'due_date', 'description', 'category_id', 'user_id', 'is_done'];
 
     /**
      * Relacionamentos
@@ -19,7 +19,7 @@ class Task extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
-    
+
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
