@@ -8,6 +8,9 @@
 
     <section class="form-container">
         <h2>Editar Tarefa</h2>
+
+        <x-alerts />
+
         <form action="">
             <x-form buttonText="Editar tarefa" :data=$task />
         </form>

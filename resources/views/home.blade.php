@@ -40,6 +40,13 @@
             @foreach ($tasks as $task)
                 <x-task :data=$task />
             @endforeach
+
+            <x-alerts />
         </div>
     </section>
 </x-layout>
+
+
+{{-- @push('scripts')
+<script></script>
+@endpush --}}

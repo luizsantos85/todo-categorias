@@ -5,6 +5,9 @@
     --bg-white: #f6f5ff;
     --text-dark: #0a0040;
     --color-primary: #6143ff;
+    --bg-alert:#e74c3c;
+    --bg-success:#1abc9c;
+    --bg-warning:#f39c12;
 }
 
 * {
@@ -227,7 +230,7 @@ main {
 .form-container {
     width: 700px;
     margin: 20px auto;
-    background-color: #fff;
+    background-color: var(--bg-white);
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -254,8 +257,9 @@ main {
 .form-container input,
 .form-container textarea,
 .form-container select {
+    background-color: rgba(255, 255, 255, 0.5);
     border: 1px solid #ccc;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 10px 15px;
 }
 
@@ -294,4 +298,48 @@ main {
 .form-container .row .col-50 {
     width: 50%;
     padding-right: 10px;
+}
+
+.content-alerts{
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.alert-danger{
+    background-color: var(--bg-alert);
+    color: var(--bg-white);
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.alert-success{
+    background-color: var(--bg-success);
+    color: var(--bg-white);
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.list-group {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.list-group-item {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+}
+
+/* Estilo para os elementos com erro */
+.error-item {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+    border-radius: 5px;
 }
