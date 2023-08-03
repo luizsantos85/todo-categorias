@@ -16,7 +16,11 @@
             <option value="" selected disabled>Selecione...</option>
             @if (isset($categories) && $categories)
                 @foreach ($categories as $category)
-                    <option value="{{$category->id}}">{{$category->title}}</option>
+                    <option value="{{$category->id}}"
+                        {{isset($data) && $data->category_id === $category->id ? 'selected' : ''}}
+                    >
+                        {{$category->title}}
+                    </option>
                 @endforeach
             @endif
         </select>
@@ -24,7 +28,7 @@
 
     <div class="col-50">
         <label for="due_date">Data de realização:</label>
-        <input type="date" id="due_date" name="due_date" value="{{ isset($data) && !empty($data->due_date) ? date('d/m/Y', strtotime($data->due_date)) : ''}}" required>
+        <input type="datetime-local" id="due_date" name="due_date" value="{{ isset($data) && !empty($data->due_date) ? $data->due_date : ''}}" required>
     </div>
 </div>
 

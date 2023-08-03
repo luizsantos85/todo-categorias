@@ -7,12 +7,13 @@
     </x-slot:btn>
 
     <section class="form-container">
-        <h2>Editar Tarefa</h2>
+        <h2>Atualizar Tarefa</h2>
 
         <x-alerts />
 
-        <form action="">
-            <x-form buttonText="Editar tarefa" :data=$task />
+        <form action="{{route('task.update', $task->id)}}" method="POST">
+            @method('PUT')
+            <x-form buttonText="Atualizar tarefa" :data=$task :categories=$categories />
         </form>
     </section>
 </x-layout>
