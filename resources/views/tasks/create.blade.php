@@ -12,7 +12,7 @@
         <x-alerts />
 
         <form action="{{route('task.store')}}" method="post">
-            <x-form buttonText="Criar tarefa" :categories=$categories></x-form>
+            <x-task-form buttonText="Criar tarefa" :categories=$categories></x-task-form>
         </form>
     </section>
 

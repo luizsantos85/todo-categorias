@@ -66,7 +66,15 @@ class TaskController extends Controller
 
     public function delete($id)
     {
-        return redirect()->route('home');
+        $task = Task::find($id);
+        
+        if (!$task) {
+            return redirect()->route('home')->with('error', 'Tarefa com id inválido.');
+        }
+
+        $task->delete();
+
+        return redirect()->route('home')->with('success', 'Tarefa deletada com sucesso.');
     }
 
 
