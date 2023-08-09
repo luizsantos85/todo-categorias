@@ -6,5 +6,17 @@
         </a>
     </x-slot:btn>
 
-    Tela de Registro
+    <section class="form-container">
+        <h2>Cadastro de usuário</h2>
+
+        <x-alerts />
+
+        <form action="{{route('register.store')}}" method="post">
+
+            <x-auth-form btnText="Registrar"/>
+
+        </form>
+    </section>
+
+
 </x-layout>

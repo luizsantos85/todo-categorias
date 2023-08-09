@@ -6,5 +6,15 @@
         </a>
     </x-slot:btn>
 
-    Tela de Login
+    <section class="form-container">
+        <h2>Login de usuário</h2>
+
+        <x-alerts />
+
+        <form action="{{route('task.store')}}" method="post">
+
+            <x-auth-form btnText="Logar" login="true"/>
+
+        </form>
+    </section>
 </x-layout>
