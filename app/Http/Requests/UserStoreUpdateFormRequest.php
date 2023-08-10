@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Request;
 
 class UserStoreUpdateFormRequest extends FormRequest
 {
@@ -26,12 +27,21 @@ class UserStoreUpdateFormRequest extends FormRequest
         // $id = $this->segment(3);
         // $id = Request::get('id');
 
-        return [
-            'name' => 'required',
-            // 'email' => "required|email|unique:users,email,{$id},id",
-            'email' => "required|email|unique:users",
-            'password' => 'required|min:5|confirmed'
+        $isLoginPage = Request::is('login');
+
+        $rules = [
+            'email' => "required|email",
+            'password' => 'required'
         ];
+
+        if(!$isLoginPage){
+            // $rules['email'] = "required|email|unique:users,email,{$id},id";
+            $rules['email'] = "required|email|unique:users";
+            $rules['name'] = 'required';
+            $rules['password'] = 'required|min:5|confirmed';
+        }
+
+        return $rules;
 
     }
 

@@ -4,6 +4,10 @@
         <a href="{{route('task.create')}}" class="btn btn-primary">
             Criar tarefa
         </a>
+
+        <a href="{{route('logout')}}" class="btn btn-primary">
+            Sair
+        </a>
     </x-slot:btn>
 
     <section class="graph">
@@ -37,11 +41,11 @@
             </select>
         </div>
         <div class="task_list">
+            <x-alerts />
             @foreach ($tasks as $task)
                 <x-task :data=$task />
             @endforeach
 
-            <x-alerts />
         </div>
     </section>
 </x-layout>

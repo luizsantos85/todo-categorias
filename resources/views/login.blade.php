@@ -11,7 +11,7 @@
 
         <x-alerts />
 
-        <form action="{{route('task.store')}}" method="post">
+        <form action="{{route('login.store')}}" method="post">
 
             <x-auth-form btnText="Logar" login="true"/>
 

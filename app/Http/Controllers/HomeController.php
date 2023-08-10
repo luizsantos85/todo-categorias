@@ -9,10 +9,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $tasks = Task::where('user_id',1)->with('category')->get();
+        $user = auth()->user();
+        $tasks = Task::where('user_id',$user->id)->with('category')->get();
 
-
-        return view('home', ['tasks' => $tasks]);
+        return view('home', ['tasks' => $tasks, 'user' => $user]);
     }
 
 }

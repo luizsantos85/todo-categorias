@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserStoreUpdateFormRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -19,25 +20,32 @@ class AuthController extends Controller
         return view('register');
     }
 
-    public function store(UserStoreUpdateFormRequest $request)
+    public function register_store(UserStoreUpdateFormRequest $request)
     {
         $data = $request->except('_token');
 
-        // if($data['password'] !== $data['password_confirmation']){
-        //     return redirect()->back()->with('error','Senhas não batem.')->withInput();
-        // }
+        $data['password'] = Hash::make($data['password']);
 
-        // if($data['email']){
-        //     $user = User::where('email', $data['email'])->first();
+        User::create($data);
 
-        //     if($user){
-        //         return redirect()->back()->with('error', 'E-mail já cadastrado.')->withInput();
-        //     }
-        // }
+        return redirect()->route('login');
+    }
 
-        $data['password'] = Hash::make($request->password);
+    public function login_store(UserStoreUpdateFormRequest $request)
+    {
+        $data = $request->except('_token');
 
-        $userCreated = User::create($data);
+        if(Auth::attempt($data)){
+            return redirect()->route('home');
+        }
 
+        return redirect()->back()->with('error', 'E-mail e/ou senha inválidos.');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->route('login');
     }
 }

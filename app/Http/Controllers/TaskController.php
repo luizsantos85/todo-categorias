@@ -17,14 +17,16 @@ class TaskController extends Controller
     {
         // $user = User::where('id',1)->with('categories', 'tasks')->first();
         // $categories = $user->categories;
-        $categories = Category::where('user_id',1)->get();
+        $user = auth()->user();
+
+        $categories = Category::where('user_id', $user->id)->get();
         return view('tasks.create', ['categories' => $categories]);
     }
 
     public function store(Request $request)
     {
         $data = $request->except('_token');
-        $data['user_id'] = 1;
+        $data['user_id'] = auth()->user()->id;
         $data['is_done'] = $request->has('is_done') ? 1 : 0;
 
         if (!in_array(null, $data, true)) {
@@ -37,11 +39,12 @@ class TaskController extends Controller
 
     public function edit(Request $request)
     {
+        $user = auth()->user();
         $id = $request->id;
         $task = Task::find($id);
-        $categories = Category::where('user_id', 1)->get();
+        $categories = Category::where('user_id', $user->id)->get();
 
-        if(!$task){
+        if (!$task) {
             return redirect()->route('home')->with('error', 'Tarefa com id inválido.');
         }
 
@@ -56,7 +59,7 @@ class TaskController extends Controller
         }
 
         $data = $request->except('_token');
-        $data['user_id'] = 1;
+        $data['user_id'] = auth()->user()->id;
         $data['is_done'] = $request->has('is_done') ? 1 : 0;
 
         $task->update($data);
@@ -67,7 +70,7 @@ class TaskController extends Controller
     public function delete($id)
     {
         $task = Task::find($id);
-        
+
         if (!$task) {
             return redirect()->route('home')->with('error', 'Tarefa com id inválido.');
         }
@@ -76,6 +79,4 @@ class TaskController extends Controller
 
         return redirect()->route('home')->with('success', 'Tarefa deletada com sucesso.');
     }
-
-
 }
