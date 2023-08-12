@@ -5,6 +5,10 @@
             Criar tarefa
         </a>
 
+        <a href="{{route('category.create')}}" class="btn btn-primary">
+            Criar Categoria
+        </a>
+
         <a href="{{route('logout')}}" class="btn btn-primary">
             Sair
         </a>
@@ -43,7 +47,7 @@
         <div class="task_list">
             <x-alerts />
             @foreach ($tasks as $task)
-                <x-task :data=$task />
+            <x-task :data=$task />
             @endforeach
 
         </div>

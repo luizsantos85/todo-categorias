@@ -2,81 +2,85 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Task;
-use App\Models\User;
+use App\Http\Requests\TaksStoreUpdateFormRequest;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function show()
-    {
-    }
-
     public function create()
     {
-        // $user = User::where('id',1)->with('categories', 'tasks')->first();
-        // $categories = $user->categories;
         $user = auth()->user();
+        $categories = $user->categories;
 
-        $categories = Category::where('user_id', $user->id)->get();
         return view('tasks.create', ['categories' => $categories]);
     }
 
-    public function store(Request $request)
+    public function store(TaksStoreUpdateFormRequest $request)
     {
         $data = $request->except('_token');
-        $data['user_id'] = auth()->user()->id;
+        $user = auth()->user();
         $data['is_done'] = $request->has('is_done') ? 1 : 0;
 
-        if (!in_array(null, $data, true)) {
-            Task::create($data);
-            return redirect()->route('home')->with('success', 'Tarefa criada com sucesso.');
+        $task = $user->tasks()->create($data);
+
+        if ($task) {
+            return redirect()->route('home')
+                ->with('success', 'Tarefa criada com sucesso.');
         }
 
-        return redirect()->back()->with('error', 'Preencha todos os dados.');
+        return redirect()->back()
+            ->with('error', 'Preencha todos os dados.');
     }
 
     public function edit(Request $request)
     {
-        $user = auth()->user();
+        $user = auth()->user()->load('categories');
         $id = $request->id;
+        $categories = $user->categories;
         $task = Task::find($id);
-        $categories = Category::where('user_id', $user->id)->get();
 
         if (!$task) {
-            return redirect()->route('home')->with('error', 'Tarefa com id inválido.');
+            return redirect()->route('home')
+                ->with('error', 'Tarefa com id inválido.');
         }
 
         return view('tasks.edit', ['task' => $task, 'categories' => $categories]);
     }
 
-    public function update($id, Request $request)
+    public function update($id, TaksStoreUpdateFormRequest $request)
     {
-        $task = Task::find($id);
+        $user = auth()->user();
+        $task = $user->tasks()->find($id);
+
         if (!$task) {
-            return redirect()->route('home')->with('error', 'Tarefa com id inválido.');
+            return redirect()->route('home')
+                ->with('error', 'Tarefa com id inválido.');
         }
 
         $data = $request->except('_token');
-        $data['user_id'] = auth()->user()->id;
+        $data['user_id'] = $user->id;
         $data['is_done'] = $request->has('is_done') ? 1 : 0;
 
         $task->update($data);
 
-        return redirect()->route('home')->with('success', 'Tarefa editada com sucesso.');
+        return redirect()->route('home')
+            ->with('success', 'Tarefa editada com sucesso.');
     }
 
     public function delete($id)
     {
-        $task = Task::find($id);
+        $user = auth()->user();
+        $task = $user->tasks()->find($id);
 
         if (!$task) {
-            return redirect()->route('home')->with('error', 'Tarefa com id inválido.');
+            return redirect()->route('home')
+                ->with('error', 'Tarefa com id inválido.');
         }
 
         $task->delete();
 
-        return redirect()->route('home')->with('success', 'Tarefa deletada com sucesso.');
+        return redirect()->route('home')
+            ->with('success', 'Tarefa deletada com sucesso.');
     }
 }

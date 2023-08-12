@@ -1,6 +1,8 @@
 @csrf
-<label for="title">Nome da Tarefa:</label>
+<label for="title">Nome da {{ isset($categories) && $categories ? 'Tarefa' : 'Categoria'}}:</label>
 <input type="text" id="title" name="title" value="{{ $data->title ?? ''}}" required>
+
+@if (isset($categories) && $categories)
 
 <label for="description">Descrição:</label>
 <textarea id="description" name="description" rows="4" required>{{ $data->description ?? ''}}</textarea>
@@ -32,6 +34,11 @@
     </div>
 </div>
 
-{{-- <input type="hidden" name="user_id" value="{{$user_id}}"> --}}
+@else
+<label for="color">Cor:</label>
+    <input type="color" class="input-color" id="color"
+        name="color" value="{{ $data->color ?? ''}}" required />
+
+@endif
 
 <input type="submit" value="{{isset($buttonText) ? $buttonText : ''}}">

@@ -13,7 +13,7 @@
 
         <form action="{{route('task.update', $task->id)}}" method="POST">
             @method('PUT')
-            <x-task-category-form buttonText="Atualizar tarefa" :data=$task :categories=$categories />
+            <x-task-category-form buttonText="Atualizar tarefa" :data=$category />
         </form>
     </section>
 </x-layout>

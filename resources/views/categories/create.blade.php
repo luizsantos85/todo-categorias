@@ -1,4 +1,4 @@
-<x-layout titlePage="Criar Tarefa">
+<x-layout titlePage="Criar Categoria">
 
     <x-slot:btn>
         <a href="{{route('home')}}" class="btn btn-primary">
@@ -7,12 +7,12 @@
     </x-slot:btn>
 
     <section class="form-container">
-        <h2>Cadastrar Tarefa</h2>
+        <h2>Cadastrar Categoria</h2>
 
         <x-alerts />
 
         <form action="{{route('task.store')}}" method="post">
-            <x-task-category-form buttonText="Criar tarefa" :categories=$categories></x-task-category-form>
+            <x-task-category-form buttonText="Criar categoria"></x-task-category-form>
         </form>
     </section>
 
