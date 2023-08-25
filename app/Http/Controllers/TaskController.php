@@ -68,6 +68,25 @@ class TaskController extends Controller
             ->with('success', 'Tarefa editada com sucesso.');
     }
 
+    public function updateStatus($id, Request $request)
+    {
+        $user = auth()->user();
+        $task = $user->tasks()->find($id);
+
+        if (!$task) {
+            return response()->json(['error', 'Tarefa com id inválido.']);
+        }
+
+        $data = $request->except('_token');
+        $data['user_id'] = $user->id;
+        $data['is_done'] = $request->is_done;
+
+        $task->update($data);
+        return response()->json(['success' => true]);
+    }
+
+
+
     public function delete($id)
     {
         $user = auth()->user();

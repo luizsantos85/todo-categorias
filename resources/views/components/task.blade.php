@@ -1,6 +1,6 @@
 <div class="task">
     <div class="task_title">
-        <input type="checkbox" name="is_done" {{ $data && $data['is_done'] == true ? 'checked' : ''}}/>
+        <input type="checkbox" name="is_done" {{ $data && $data['is_done'] == true ? 'checked' : ''}} onchange="updateStatusTask(this)" data-id="{{$data->id}}"/>
         <span> {{ $data['title'] ?? ''}} </span>
     </div>
     <div class="task_color">
@@ -16,3 +16,4 @@
         </a>
     </div>
 </div>
+

@@ -22,19 +22,20 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::prefix('task')->group(function(){
-        Route::get('/task/new', [TaskController::class, 'create'])->name('task.create');
-        Route::post('/task/new_action', [TaskController::class, 'store'])->name('task.store');
-        Route::get('/task/edit', [TaskController::class, 'edit'])->name('task.edit');
-        Route::put('/task/edit_action/{id}', [TaskController::class, 'update'])->name('task.update');
-        Route::get('/task/delete/{id}', [TaskController::class, 'delete'])->name('task.delete');
+        Route::get('/new', [TaskController::class, 'create'])->name('task.create');
+        Route::post('/new_action', [TaskController::class, 'store'])->name('task.store');
+        Route::get('/edit', [TaskController::class, 'edit'])->name('task.edit');
+        Route::put('/edit_action/{id}', [TaskController::class, 'update'])->name('task.update');
+        Route::put('/status_action/{id}', [TaskController::class, 'updateStatus'])->name('task.updateStatus');
+        Route::get('/delete/{id}', [TaskController::class, 'delete'])->name('task.delete');
     });
 
     Route::prefix('category')->group(function () {
-        Route::get('/category/new', [CategoryController::class, 'create'])->name('category.create');
-        Route::post('/category/new_action', [CategoryController::class, 'store'])->name('category.store');
-        Route::get('/category/edit', [CategoryController::class, 'edit'])->name('category.edit');
-        Route::put('/category/edit_action/{id}', [CategoryController::class, 'update'])->name('category.update');
-        Route::get('/category/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+        Route::get('/new', [CategoryController::class, 'create'])->name('category.create');
+        Route::post('/new_action', [CategoryController::class, 'store'])->name('category.store');
+        Route::get('/edit', [CategoryController::class, 'edit'])->name('category.edit');
+        Route::put('/edit_action/{id}', [CategoryController::class, 'update'])->name('category.update');
+        Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
     });
 });
 

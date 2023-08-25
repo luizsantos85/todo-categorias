@@ -37,12 +37,11 @@ a {
     width: 100px;
     background-color: var(--color-primary);
 }
+
 .sidebar img {
     max-width: 100%;
 }
 
-.content {
-}
 nav {
     height: 100px;
     background-color: var(--bg-light);

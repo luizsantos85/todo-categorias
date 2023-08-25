@@ -55,6 +55,42 @@
 </x-layout>
 
 
-{{-- @push('scripts')
-<script></script>
-@endpush --}}
+<script>
+    async function updateStatusTask(e){
+        let isDone = e.checked;
+        // let id = e.getAttribute('data-id');
+        let taskId = e.dataset.id;
+        const url = "/task/status_action/" + taskId;
+
+        let rawResult = await fetch(url, {
+            method: "put",
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                },
+            body: JSON.stringify({
+                _token: '{{ csrf_token()}}',
+                id: taskId,
+                is_done: isDone
+            })
+        });
+
+        let result = await rawResult.json();
+
+        if(result.success){
+            const successAlert = document.createElement('div');
+            successAlert.classList.add('alert-success');
+            successAlert.textContent = 'Tarefa editada com sucesso.'
+
+            const contentAlerts = document.querySelector('.content-alerts .messages');
+            contentAlerts.appendChild(successAlert);
+
+            // Remova o alerta após um tempo
+            setTimeout(() => {
+                contentAlerts.removeChild(successAlert);
+            }, 5000);
+        }else{
+            e.checked != e.checked;
+        }
+    }
+</script>
