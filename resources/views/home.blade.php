@@ -1,6 +1,3 @@
-@php
-    setLocale(LC_TIME,'pt-br');
-@endphp
 <x-layout titlePage="Home">
 
     <x-slot:btn>
@@ -34,14 +31,18 @@
 
         <div class="subtitle_graph_header">
             Tarefas:
-            <b>3/7</b>
+            <b>{{$tasks->where('is_done',1)->count()}}/{{$tasks->count()}}</b>
         </div>
 
         <div class="graph_body"></div>
 
         <div class="graph_footer">
             <img src="{{asset('assets/images/icon-info.png')}}" alt="icon info">
-            <p>Restam 4 tarefas para serem feitas.</p>
+            @if ($tasks->where('is_done',0)->count() <= 1)
+                <p>Resta {{$tasks->where('is_done',0)->count()}} tarefa para ser feita.</p>
+            @else
+                <p>Restam {{$tasks->where('is_done',0)->count()}} tarefas para serem feitas.</p>
+            @endif
         </div>
     </section>
 
@@ -100,6 +101,5 @@
             e.checked = !e.checked;
         }
     }
-
 
 </script>

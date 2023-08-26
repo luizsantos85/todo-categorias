@@ -10,12 +10,7 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        if($request->date && $request->date !== null){
-            $dateFilter = $request->date;
-        }else{
-            $dateFilter = date('Y-m-d');
-        }
-
+        $dateFilter = $request->date ?? date('Y-m-d');
         $date = Carbon::createFromDate($dateFilter);
 
         $dateNow = $date->format('d') . ' de '. ucfirst($date->translatedFormat('M'));
@@ -27,6 +22,8 @@ class HomeController extends Controller
             ->whereDate('due_date', $dateFilter)
             ->with('category')
             ->get();
+
+        $tasksFinished = $tasks->where('is_done', 1)->count();
 
         return view('home', [
             'tasks' => $tasks,

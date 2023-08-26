@@ -4,7 +4,7 @@
         <span> {{ $data['title'] ?? ''}} </span>
     </div>
     <div class="task_color">
-        <div class="priority_color"></div>
+        <div class="priority_color" style="background: {{$data['category']->color}};"></div>
         <span> {{$data['category']->title ?? '' }} </span>
     </div>
     <div class="task_buttons">
