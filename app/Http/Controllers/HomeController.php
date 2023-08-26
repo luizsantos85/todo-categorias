@@ -23,8 +23,6 @@ class HomeController extends Controller
             ->with('category')
             ->get();
 
-        $tasksFinished = $tasks->where('is_done', 1)->count();
-
         return view('home', [
             'tasks' => $tasks,
             'user' => $user,
