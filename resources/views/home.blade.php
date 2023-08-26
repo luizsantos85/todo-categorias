@@ -1,3 +1,6 @@
+@php
+    setLocale(LC_TIME,'pt-br');
+@endphp
 <x-layout titlePage="Home">
 
     <x-slot:btn>
@@ -19,9 +22,13 @@
             <h2>Progresso do dia</h2>
             <hr class="line_graph_header" />
             <div class="date_graph_header">
-                <img src="{{asset('assets/images/icon-prev.png')}}" alt="">
-                20/07/2023
-                <img src="{{asset('assets/images/icon-next.png')}}" alt="">
+                <a href="{{route('home', ['date' => $datePrev])}}">
+                    <img src="{{asset('assets/images/icon-prev.png')}}" alt="">
+                </a>
+                    {{$dateNow}}
+                <a href="{{route('home', ['date' => $dateNext])}}">
+                    <img src="{{asset('assets/images/icon-next.png')}}" alt="">
+                </a>
             </div>
         </div>
 
@@ -90,7 +97,9 @@
                 contentAlerts.removeChild(successAlert);
             }, 5000);
         }else{
-            e.checked != e.checked;
+            e.checked = !e.checked;
         }
     }
+
+
 </script>
